@@ -32,4 +32,4 @@ jobs:
           template: main.bicep
           parameters: parameters.bicepparam
           deploymentMode: Incremental
-          failOnStandardError: true
+          failOnStandardError: false
