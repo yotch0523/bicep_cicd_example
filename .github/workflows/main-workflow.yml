@@ -19,7 +19,7 @@ jobs:
       - name: testing
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.0.72
+          azcliversion: 2.27.1
           inlineScript: |
             az deployment group what-if --resource-group ${{ secrets.RG_NAME }} --template-file main.bicep --parameters parameters.bicepparam
       - name: deploy
