@@ -1,4 +1,9 @@
 on: [push]
+
+permissions:
+  id-token: write
+  contents: read
+
 name: Deploy Bicep Template
 jobs:
   build-and-deploy:

@@ -31,6 +31,11 @@ az ad sp create-for-rbac
   --role contributor
   --scopes /subscriptions/[your-subscription-id]/resourceGroups/[your-resource-group-name]
   --sdk-auth
+
+# create federated credential
+az ad app federated-credential create
+  --id [your-application-id]
+  --parameters credential.json
 ```
 
 # How to deploy the infrastructure
