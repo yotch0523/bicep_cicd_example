@@ -39,6 +39,7 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' = {
       '/subscriptions/${subscription().subscriptionId}/resourcegroups/rg-ghcicd/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-sa': {}
     }
   }
+  tags: tags
   properties: {
     enabled: true
     hostNameSslStates: [
