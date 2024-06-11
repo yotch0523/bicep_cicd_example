@@ -33,3 +33,4 @@ jobs:
           parameters: parameters.bicepparam
           deploymentMode: Incremental
           failOnStandardError: false
+          failOnStdErr: false
