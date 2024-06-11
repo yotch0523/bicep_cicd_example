@@ -17,9 +17,9 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: testing
-        uses: azure/CLI@v1
+        uses: azure/CLI@v2
         with:
-          azcliversion: 2.27.1
+          azcliversion: latest
           inlineScript: |
             az deployment group what-if --resource-group ${{ secrets.RG_NAME }} --template-file main.bicep --parameters parameters.bicepparam
       - name: deploy
