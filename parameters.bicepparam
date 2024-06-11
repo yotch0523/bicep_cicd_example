@@ -1,4 +1,4 @@
-using './template.bicep'
+using './main.bicep'
 
 param location = 'japaneast'
 
