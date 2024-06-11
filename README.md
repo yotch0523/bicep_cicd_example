@@ -22,6 +22,7 @@
 ```
 
 # Prerequisites
+## 1. Has Service principal already been created and assigned the necessary roles? 
 ```shell
 az login --tenant [your-tenant-id]
 
@@ -36,11 +37,39 @@ az ad sp create-for-rbac
 az ad app federated-credential create
   --id [your-application-id]
   --parameters credential.json
+
+# the contributor role on Web App
+az role assignment create
+  --role contributor
+  --subscription [your-subscription-id]
+  --assignee-object-id [target-service-principal-id]
+  --scope [your-target-webapp-path]
+  --assignee-principal-type ServicePrincipal
+
+# if create role-assignment resource, the folowing assignment code is necessary
+az role assignment create
+  --role "User Access Administrator"
+  --subscription [your-subscription-id]
+  --assignee-object-id [target-service-principal-id]
+  --scope [your-target-resource-group]
+  --assignee-principal-type ServicePrincipal
 ```
 
 # How to deploy the infrastructure
 ```shell
 az login --tenant [your-tenant-id]
+
+# dry-run command
+az deployment group what-if
+  --resource-group [resource-group-name]
+  --template-file [bicep-file-path]
+  --parameters [parameter-file-path]
+
+# deploy command
+az deployment group create
+  --resource-group [resource-group-name]
+  --template-file [bicep-file-path]
+  --parameters [parameter-file-path]
 
 
 ```

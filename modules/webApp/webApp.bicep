@@ -1,6 +1,7 @@
 param appServicePlanName string
 param webAppName string
 param location string = 'japaneast'
+param tags object = {}
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: appServicePlanName
@@ -25,6 +26,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
     targetWorkerSizeId: 0
     zoneRedundant: false
   }
+  tags: tags
 }
 
 resource webApp 'Microsoft.Web/sites@2023-12-01' = {

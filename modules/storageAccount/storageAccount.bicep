@@ -1,12 +1,11 @@
 param location string = 'japaneast'
 param storageAccountName string
+param tags object = {}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-04-01' = {
   name: storageAccountName
   location: location
-  tags: {
-    workload: 'r&d'
-  }
+  tags: tags
   sku: {
     name: 'Standard_LRS'
   }

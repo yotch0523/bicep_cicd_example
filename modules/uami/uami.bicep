@@ -3,6 +3,7 @@ param webAppName string
 param storageAccountName string
 param uamiSaName string
 param uamiCiCdName string
+param tags object = {}
 
 // get existing web app resouce object by webAppId
 resource webApp 'Microsoft.Web/sites@2023-12-01' existing = {
@@ -12,6 +13,7 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' existing = {
 resource uamiCiCd 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-07-31-preview' = {
   name: uamiCiCdName
   location: location
+  tags: tags
 }
 
 resource roleAssignmentToUamiCiCd 'Microsoft.Authorization/roleAssignments@2021-04-01-preview' = {
@@ -39,9 +41,7 @@ resource uamiCiCdFederatedIdentityCredential 'Microsoft.ManagedIdentity/userAssi
 resource uamiSa 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-07-31-preview' = {
   name: uamiSaName
   location: location
-  tags: {
-    workload: 'r&d'
-  }
+  tags: tags
 }
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {

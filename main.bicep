@@ -4,6 +4,8 @@ param webAppName string
 param storageAccountName string
 param uamiSaName string
 param uamiCiCdName string
+param keyVaultName string
+param tags object
 
 module webAppModule './modules/webApp/webApp.bicep' = {
   name: 'webAppModule'
@@ -11,6 +13,7 @@ module webAppModule './modules/webApp/webApp.bicep' = {
     location: location
     appServicePlanName: appServicePlanName
     webAppName: webAppName
+    tags: tags
   }
 }
 
@@ -19,6 +22,7 @@ module storageAccountModule './modules/storageAccount/storageAccount.bicep' = {
   params: {
     location: location
     storageAccountName: storageAccountName
+    tags: tags
   }
 }
 
@@ -35,4 +39,12 @@ module uamiModule './modules/uami/uami.bicep' = {
     webAppModule
     storageAccountModule
   ]
+}
+
+module keyVaultModule './modules/keyVault/keyVault.bicep' = {
+  name: 'keyVaultModule'
+  params: {
+    keyVaultName: keyVaultName
+    location: location
+  }
 }
