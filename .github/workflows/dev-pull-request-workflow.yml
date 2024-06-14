@@ -9,7 +9,7 @@ permissions:
 
 name: Dev Branch Pull Request
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -27,13 +27,3 @@ jobs:
           template: main.bicep
           parameters: parameters.bicepparam
           deploymentMode: Validate
-      - name: deploy
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          resourceGroupName: ${{ secrets.RG_NAME }}
-          template: main.bicep
-          parameters: parameters.bicepparam
-          deploymentMode: Incremental
-          failOnStandardError: false
-          failOnStdErr: false
